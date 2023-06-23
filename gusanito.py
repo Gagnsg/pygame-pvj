@@ -7,11 +7,11 @@ pygame.init()
 W, H = 1000, 600
 PANTALLA = pygame.display.set_mode((W, H))
 pygame.display.set_caption('Exterminator')
-icono=pygame.image.load("D:\piton\Recursos juego\icono.png")
+icono=pygame.image.load("D:\piton\Recursos juego\caca.png")
 pygame.display.set_icon(icono)
 
 #Fondo del juego
-fondo = pygame.image.load("D:\piton\Recursos juego\ondo.jpg")
+fondo = pygame.image.load("D:\piton\Recursos juego\Long spaceshi 0 (2).jpg")
 fondo=pygame.transform.scale(fondo,(W,H))
 """#Música de fondo
 pygame.mixer.music.load('sonido/intergalactic_odyssey.ogg')
@@ -19,22 +19,24 @@ pygame.mixer.music.play(-1)
 """
 
 #Personaje
-quieto = pygame.image.load("D:\piton\Recursos juego\wario-run-1.png")
+quieto = pygame.image.load("D:\piton\Recursos juego\SPRITES\QUIETO\AYUDA.png")
 
-caminaIzquierda= [pygame.image.load("D:\piton\Recursos juego\wario-run-1.png"),
-                   pygame.image.load("D:\piton\Recursos juego\wario-run-2.png"),
-                   pygame.image.load("D:\piton\Recursos juego\wario-run-3.png"),
-                   pygame.image.load("D:\piton\Recursos juego\wario-run-4.png"),
-                   pygame.image.load("D:\piton\Recursos juego\wario-run-5.png")]
+caminaIzquierda= [pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER IZQUIERDA\Pers_correr_izq_1.png"),
+                   pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER IZQUIERDA\Pers_correr_izq_2.png"),
+                   pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER IZQUIERDA\Pers_correr_izq_3.png"),
+                   pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER IZQUIERDA\Pers_correr_izq_4.png"),
+                   pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER IZQUIERDA\Pers_correr_izq_5.png"),
+                  pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER IZQUIERDA\Pers_correr_izq_6.png")]
 
-caminaDerecha= [pygame.image.load("D:\piton\Recursos juego\wario-run-1.png"),
-                   pygame.image.load("D:\piton\Recursos juego\wario-run-2.png"),
-                   pygame.image.load("D:\piton\Recursos juego\wario-run-3.png"),
-                   pygame.image.load("D:\piton\Recursos juego\wario-run-4.png"),
-                   pygame.image.load("D:\piton\Recursos juego\wario-run-5.png")]
+caminaDerecha= [pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_1.png"),
+                pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_2.png"),
+                pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_3.png"),
+                pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_4.png"),
+                pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_5.png"),
+                pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_6.png")]
 
-salta = [pygame.image.load("D:\piton\Recursos juego\wario-jump-1.png"),
-         pygame.image.load("D:\piton\Recursos juego\wario-jump-2.png")]
+salta = [pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_1.png"),
+          pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_2.png")]
 
 """#Sonido
 sonido_arriba = pygame.image.load('sonido/volume_up.png')
@@ -129,27 +131,14 @@ while ejecuta:
         cuentaPasos = 0
 
     #Tecla W - Moviemiento hacia arriba
-    if keys[pygame.K_w] and py > 10:
+    if keys[pygame.K_w] and py > 5:
         py -= velocidad
 
     #Tecla S - Moviemiento hacia abajo
-    if keys[pygame.K_s] and py < 500:
+    if keys[pygame.K_s] and py < 460:
         py += velocidad
-    #Tecla SPACE - Salto
-    if not (salto):
-        if keys[pygame.K_SPACE]:
-            salto = True
-            izquierda = False
-            derecha = False
-            cuentaPasos = 0
-    else:
-        if cuentaSalto >= -10:
-            py -= (cuentaSalto * abs(cuentaSalto)) * 0.5
-            cuentaSalto -= 1
-        else:
-            cuentaSalto = 10
-            salto = False
-    # Actualización de la ventana
+
+    # Actualización de la ventana5
     pygame.display.update()
     #Llamada a la función de actualización de la ventana
     recargaPantalla()
