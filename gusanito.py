@@ -21,22 +21,24 @@ pygame.mixer.music.play(-1)
 #Personaje
 quieto = pygame.image.load("D:\piton\Recursos juego\SPRITES\QUIETO\AYUDA.png")
 
-caminaIzquierda= [pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER IZQUIERDA\Pers_correr_izq_1.png"),
-                   pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER IZQUIERDA\Pers_correr_izq_2.png"),
-                   pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER IZQUIERDA\Pers_correr_izq_3.png"),
-                   pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER IZQUIERDA\Pers_correr_izq_4.png"),
-                   pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER IZQUIERDA\Pers_correr_izq_5.png"),
-                  pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER IZQUIERDA\Pers_correr_izq_6.png")]
+caminaIzquierda= [pygame.image.load("Recursos juego/SPRITES/CORRER IZQUIERDA/Pers_correr_izq_1.png"),
+                   pygame.image.load("Recursos juego/SPRITES/CORRER IZQUIERDA/Pers_correr_izq_2.png"),
+                   pygame.image.load("Recursos juego/SPRITES/CORRER IZQUIERDA/Pers_correr_izq_3.png"),
+                   pygame.image.load("Recursos juego/SPRITES/CORRER IZQUIERDA/Pers_correr_izq_4.png"),
+                   pygame.image.load("Recursos juego/SPRITES/CORRER IZQUIERDA/Pers_correr_izq_5.png"),
+                  pygame.image.load("Recursos juego/SPRITES/CORRER IZQUIERDA/Pers_correr_izq_6.png")]
 
-caminaDerecha= [pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_1.png"),
-                pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_2.png"),
-                pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_3.png"),
-                pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_4.png"),
-                pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_5.png"),
-                pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_6.png")]
+caminaDerecha= [pygame.image.load("Recursos juego/SPRITES/CORRER DERECHA/Pers_correr_1.png"),
+                pygame.image.load("Recursos juego/SPRITES/CORRER DERECHA/Pers_correr_2.png"),
+                pygame.image.load("Recursos juego/SPRITES/CORRER DERECHA/Pers_correr_3.png"),
+                pygame.image.load("Recursos juego/SPRITES/CORRER DERECHA/Pers_correr_4.png"),
+                pygame.image.load("Recursos juego/SPRITES/CORRER DERECHA/Pers_correr_5.png"),
+                pygame.image.load("Recursos juego/SPRITES/CORRER DERECHA/Pers_correr_6.png")]
 
-salta = [pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_1.png"),
-          pygame.image.load("D:\piton\Recursos juego\SPRITES\CORRER DERECHA\Pers_correr_2.png")]
+arriba = [pygame.image.load("Recursos juego/SPRITES/CORRER DERECHA/Pers_correr_1.png"),
+          pygame.image.load("Recursos juego/SPRITES/CORRER DERECHA/Pers_correr_2.png"),
+          pygame.image.load("Recursos juego/SPRITES/CORRER DERECHA/Pers_correr_3.png"),
+          pygame.image.load("Recursos juego/SPRITES/CORRER DERECHA/Pers_correr_4.png")]
 
 """#Sonido
 sonido_arriba = pygame.image.load('sonido/volume_up.png')
@@ -53,14 +55,13 @@ velocidad = 10
 #Control de FPS
 reloj = pygame.time.Clock()
 
-#Variables salto
-salto = False
 #Contador de salto
 cuentaSalto = 10
 
 #Variables dirección
 izquierda = False
 derecha = False
+arribo = False
 
 #Pasos
 cuentaPasos = 0
@@ -78,20 +79,19 @@ def recargaPantalla():
         PANTALLA.blit(fondo, (x_relativa, 0))
     x -= 5
     #Contador de pasos
-    if cuentaPasos + 1 >= 5:
+    if cuentaPasos + 1 >= 6:
         cuentaPasos = 0
     #Movimiento a la izquierda
     if izquierda:
         PANTALLA.blit(caminaIzquierda[cuentaPasos // 1], (int(px), int(py)))
         cuentaPasos += 1
-
         # Movimiento a la derecha
     elif derecha:
         PANTALLA.blit(caminaDerecha[cuentaPasos // 1], (int(px), int(py)))
         cuentaPasos += 1
 
-    elif salto + 1 >= 2:
-        PANTALLA.blit(salta[cuentaPasos // 1], (int(px), int(py)))
+    elif arribo + 1 >= 4:
+        PANTALLA.blit(arriba[cuentaPasos // 1], (int(px), int(py)))
         cuentaPasos += 1
 
     else:
@@ -131,14 +131,16 @@ while ejecuta:
         cuentaPasos = 0
 
     #Tecla W - Moviemiento hacia arriba
-    if keys[pygame.K_w] and py > 5:
+    if keys[pygame.K_w] and py > 0:
         py -= velocidad
+        arribo=True
 
     #Tecla S - Moviemiento hacia abajo
     if keys[pygame.K_s] and py < 460:
         py += velocidad
 
-    # Actualización de la ventana5
+
+    # Actualización de la ventana
     pygame.display.update()
     #Llamada a la función de actualización de la ventana
     recargaPantalla()

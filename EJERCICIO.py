@@ -145,7 +145,7 @@ class Personaje:
             if keys[pygame.K_s] and self.py < 460:
                 self.py += self.velocidad
     pygame.display.update()
-    recargaPantalla(self)
+
 
 
 #VENTANA DE MOSTRAR OPCIONES
